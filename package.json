@@ -1,0 +1,29 @@
+{
+  "name": "api_inventario",
+  "version": "1.0.0",
+  "description": "",
+  "main": "invetario.js",
+  "type": "module",
+  "engines": {
+    "node": "14.x"
+  },
+  "scripts": {
+    "dev": "nodemon src/invetario.js",
+    "start": "node src/invetario.js"
+  },
+  "keywords": [],
+  "author": "Marcelo Souza",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.4",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "mssql": "^10.0.2",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}

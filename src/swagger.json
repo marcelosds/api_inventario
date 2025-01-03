@@ -1,0 +1,410 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API - Inventário Patrimonial",
+    "version": "1.0.0",
+    "description": "API para realização de alterações de bens patrimoniais, com a utilização do aplicativo Coletor de Dados Patrimoniais..",
+    "contact": {
+      "name": "Marcelo Souza dos Santos",
+      "email": "marcelosds@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Servidor local de desenvolvimento"
+    }
+  ],
+  "paths": {
+    "/inventario/acesso/{email}": {
+      "post": {
+        "summary": "Gera um token de acesso",
+        "tags": ["Autenticação"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "description": "email do usuário",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Token gerado com sucesso"
+          },
+          "400": {
+            "description": "Erro na requisição"
+          }
+        }
+      }
+    },
+    "/inventario/bens/{inventario}": {
+      "get": {
+        "summary": "Obter bens por inventário",
+        "tags": ["Bens"],
+        "parameters": [
+          {
+            "name": "inventario",
+            "in": "path",
+            "required": true,
+            "description": "ID do inventário",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de bens encontrados"
+          },
+          "403": {
+            "description": "Token não fornecido"
+          }
+        }
+      }
+    },
+    "/inventario/benssqlite/{inventario}": {
+      "get": {
+        "summary": "Obter bens do SQLite por inventário",
+        "tags": ["Bens"],
+        "parameters": [
+          {
+            "name": "inventario",
+            "in": "path",
+            "required": true,
+            "description": "ID do inventário",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de bens encontrados no SQLite"
+          },
+          "403": {
+            "description": "Token não fornecido"
+          }
+        }
+      }
+    },
+    "/inventario/inventario/{inventario}": {
+      "get": {
+        "summary": "Obter inventário por ID",
+        "tags": ["Inventário"],
+        "parameters": [
+          {
+            "name": "inventario",
+            "in": "path",
+            "required": true,
+            "description": "ID do inventário",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detalhes do inventário encontrado"
+          },
+          "403": {
+            "description": "Token não fornecido"
+          }
+        }
+      }
+    },
+    "/inventario/total/{inventario}": {
+      "get": {
+        "summary": "Obter total de bens por inventário",
+        "tags": ["Bens"],
+        "parameters": [
+          {
+            "name": "inventario",
+            "in": "path",
+            "required": true,
+            "description": "ID do inventário",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Total de bens encontrados"
+          },
+          "403": {
+            "description": "Token não fornecido"
+          }
+        }
+      }
+    },
+    "/inventario/inventariados/{inventario}": {
+      "get": {
+        "summary": "Obter bens inventariados por inventário",
+        "tags": ["Bens"],
+        "parameters": [
+          {
+            "name": "inventario",
+            "in": "path",
+            "required": true,
+            "description": "ID do inventário",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de bens inventariados encontrados"
+          },
+          "403": {
+            "description": "Token não fornecido"
+          }
+        }
+      }
+    },
+    "/inventario/bens/{id}/{inventario}": {
+      "get": {
+        "summary": "Obter bem por ID e inventário",
+        "tags": ["Bens"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do bem",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "inventario",
+            "in": "path",
+            "required": true,
+            "description": "ID do inventário",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detalhes do bem encontrado"
+          },
+          "403": {
+            "description": "Token não fornecido"
+          }
+        }
+      }
+    },
+    "/inventario/bens/{id}/{inven}": {
+      "put": {
+        "summary": "Atualizar bem por ID e inventário",
+        "tags": ["Bens"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do bem",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "inven",
+            "in": "path",
+            "required": true,
+            "description": "ID do inventário",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Dados do bem a ser atualizado",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cdLocalizacaoReal": { "type": "integer" },
+                  "cdEstadoConserReal": { "type": "integer" },
+                  "cdSituacaoAtual": { "type": "integer" },
+                  "nrPlaca": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Bem atualizado com sucesso"
+          },
+          "403": {
+            "description": "Token não fornecido"
+          }
+        }
+      }
+    },
+    "/inventario/base/{inven}": {
+      "put": {
+        "summary": "Atualizar base de dados por inventário",
+        "tags": ["Base"],
+        "parameters": [
+          {
+            "name": "inven",
+            "in": "path",
+            "required": true,
+            "description": "ID do inventário",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Dados da base a serem atualizados",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "itens": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "cdItem": { "type": "integer" },
+                        "cdLocalizacaoReal": { "type": "integer" },
+                        "cdEstadoConserReal": { "type": "integer" },
+                        "cdSituacaoAtual": { "type": "integer" }
+                      },
+                      "required": ["cdItem", "cdLocalizacaoReal", "cdEstadoConserReal", "cdSituacaoAtual"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Base atualizada com sucesso"
+          },
+          "403": {
+            "description": "Token não fornecido"
+          }
+        }
+      }
+    },
+    "/inventario/locais/{ug}": {
+      "get": {
+        "summary": "Listar locais por unidade gestora",
+        "tags": ["Locais"],
+        "parameters": [
+          {
+            "name": "ug",
+            "in": "path",
+            "required": true,
+            "description": "ID da unidade gestora",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de locais encontrados"
+          },
+          "403": {
+            "description": "Token não fornecido"
+          }
+        }
+      }
+    },
+    "/inventario/locais/": {
+      "get": {
+        "summary": "Listar locais gerais",
+        "tags": ["Locais"],
+        "responses": {
+          "200": {
+            "description": "Lista de locais encontrados"
+          },
+          "403": {
+            "description": "Token não fornecido"
+          }
+        }
+      }
+    },
+    "/inventario/situacao/": {
+      "get": {
+        "summary": "Obter todas as situações",
+        "tags": ["Situação"],
+        "responses": {
+          "200": {
+            "description": "Lista de situações encontradas"
+          },
+          "403": {
+            "description": "Token não fornecido"
+          }
+        }
+      }
+    },
+    "/inventario/estado/": {
+      "get": {
+        "summary": "Obter todos os estados de conservação",
+        "tags": ["Estado"],
+        "responses": {
+          "200": {
+            "description": "Lista de estados encontrados"
+          },
+          "403": {
+            "description": "Token não fornecido"
+          }
+        }
+      }
+    },
+    "/inventario/inventario/": {
+      "get": {
+        "summary": "Obter todos os inventários ativos",
+        "tags": ["Inventário"],
+        "responses": {
+          "200": {
+            "description": "Lista de inventários encontrados"
+          }
+        }
+      }
+    },
+    "/inventario/inventarios/": {
+      "get": {
+        "summary": "Obter inventários ativos",
+        "tags": ["Inventário"],
+        "responses": {
+          "200": {
+            "description": "Lista de inventários encontrados"
+          }
+        }
+      }
+    },
+    "/inventario/dispositivo/": {
+      "get": {
+        "summary": "Listar dispositivos",
+        "tags": ["Dispositivo"],
+        "responses": {
+          "200": {
+            "description": "Lista de dispositivos encontrados"
+          },
+          "403": {
+            "description": "Token não fornecido"
+          }
+        }
+      }
+    }
+  }
+}
+    
