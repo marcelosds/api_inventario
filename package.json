@@ -2,14 +2,14 @@
   "name": "api_inventario",
   "version": "1.0.0",
   "description": "",
-  "main": "invetario.js",
+  "main": "inventario.js",
   "type": "module",
   "engines": {
     "node": "14.x"
   },
   "scripts": {
-    "dev": "nodemon src/invetario.js",
-    "start": "node src/invetario.js"
+    "dev": "nodemon src/inventario.js",
+    "start": "node src/inventario.js"
   },
   "keywords": [],
   "author": "Marcelo Souza",
