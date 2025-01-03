@@ -5,7 +5,7 @@
   "main": "inventario.js",
   "type": "module",
   "engines": {
-    "node": "14.x"
+    "node": "22.x"
   },
   "scripts": {
     "dev": "nodemon src/inventario.js",
